@@ -145,7 +145,7 @@ export const staticData = {
   },
 
   // الأسئلة الشائعة
-  faqs: {
+    faqs: {
     ar: [
       {
         question: "ما هي ساعات الدوام؟",

@@ -15,57 +15,42 @@ export default function FAQSection() {
   const faqs = {
     ar: [
       {
-        question: 'ما هي المراحل الدراسية المتوفرة؟',
-        answer: 'توفر المدرسة جميع المراحل التعليمية: رياض الأطفال، الابتدائي، الإعدادي، والثانوي، مع مناهج متطورة تواكب أحدث معايير التعليم.',
+        question: "ما هي ساعات الدوام؟",
+        answer: "ساعات الدوام من الأحد إلى الخميس من 8:00 صباحاً حتى 2:00 ظهراً."
       },
       {
-        question: 'كيف يمكنني التسجيل لطفلي؟',
-        answer: 'يمكنك التسجيل من خلال زيارة المدرسة أو تعبئة نموذج التسجيل الإلكتروني على موقعنا، ثم سيتم التواصل معك لإكمال الإجراءات.',
+        question: "كيف يمكنني التسجيل؟",
+        answer: "يمكنك التسجيل بزيارة المدرسة أو التواصل معنا عبر الهاتف أو البريد الإلكتروني."
       },
       {
-        question: 'ما هي الرسوم الدراسية؟',
-        answer: 'تختلف الرسوم حسب المرحلة الدراسية. يرجى التواصل مع قسم القبول للحصول على تفاصيل دقيقة ومعرفة خيارات السداد المتاحة.',
+        question: "هل توفر المدرسة مواصلات؟",
+        answer: "نعم، نوفر خدمة مواصلات آمنة ومريحة لجميع الطلاب."
       },
       {
-        question: 'هل توفر المدرسة وسائل نقل؟',
-        answer: 'نعم، توفر المدرسة خدمة النقل المدرسي بحافلات حديثة ومجهزة بكامل معايير السلامة، وتغطي معظم مناطق المدينة.',
-      },
-      {
-        question: 'ما هي الأنشطة اللامنهجية المتوفرة؟',
-        answer: 'نوفر مجموعة متنوعة من الأنشطة مثل الرياضة، الفنون، الموسيقى، البرمجة، اللغات، والنوادي الثقافية والعلمية.',
-      },
-      {
-        question: 'هل المدرسة معتمدة؟',
-        answer: 'نعم، المدرسة معتمدة من وزارة التربية والتعليم وحاصلة على اعتمادات دولية من عدة مؤسسات تعليمية عالمية.',
-      },
+        question: "ما هي الأنشطة اللاصفية؟",
+        answer: "نوفر مجموعة متنوعة من الأنشطة الرياضية والثقافية والفنية."
+      }
     ],
     en: [
       {
-        question: 'What educational stages are available?',
-        answer: 'The school offers all educational stages: Kindergarten, Primary, Preparatory, and Secondary, with advanced curricula that meet the latest educational standards.',
+        question: "What are the working hours?",
+        answer: "Working hours are Sunday to Thursday from 8:00 AM to 2:00 PM."
       },
       {
-        question: 'How can I register my child?',
-        answer: 'You can register by visiting the school or filling out the online registration form on our website, then we will contact you to complete the procedures.',
+        question: "How can I register?",
+        answer: "You can register by visiting the school or contacting us by phone or email."
       },
       {
-        question: 'What are the tuition fees?',
-        answer: 'Fees vary by educational stage. Please contact the admissions department for accurate details and available payment options.',
+        question: "Does the school provide transportation?",
+        answer: "Yes, we provide safe and comfortable transportation service for all students."
       },
       {
-        question: 'Does the school provide transportation?',
-        answer: 'Yes, the school provides school transportation with modern buses equipped with full safety standards, covering most city areas.',
-      },
-      {
-        question: 'What extracurricular activities are available?',
-        answer: 'We offer a variety of activities such as sports, arts, music, programming, languages, and cultural and scientific clubs.',
-      },
-      {
-        question: 'Is the school accredited?',
-        answer: 'Yes, the school is accredited by the Ministry of Education and has international accreditations from several global educational institutions.',
-      },
-    ],
+        question: "What are the extracurricular activities?",
+        answer: "We offer a variety of sports, cultural and artistic activities."
+      }
+    ]
   };
+
 
   const items = faqs[locale as 'ar' | 'en'];
 

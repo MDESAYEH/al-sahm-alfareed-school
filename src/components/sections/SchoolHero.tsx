@@ -47,7 +47,7 @@ export default function SchoolHero({ data }: SchoolHeroProps) {
   const [videoReady, setVideoReady] = useState(false);
   const [videoError, setVideoError] = useState(false);
 
-  const badge = data?.badge || (isRTL ? 'مكان يصتع المستقبل منذ 2014' : 'Shaping Futures Since 2014');
+  const badge = data?.badge || (isRTL ? 'مكان يصنع المستقبل منذ 2014' : 'Shaping Futures Since 2014');
   const title1 = data?.titleLine1 || (isRTL ? 'حيث يبدأ' : 'Where');
   const title2 = data?.titleLine2 || (isRTL ? 'مستقبل أبنأكم' : 'Futures Begin');
   const subtitle = data?.subtitle || (isRTL 

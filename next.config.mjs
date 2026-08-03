@@ -33,6 +33,13 @@ const nextConfig = {
           destination: '/ar/soon',
         },
       ],
+      afterFiles: [
+        // إعادة توجيه الصفحة الرئيسية إلى /ar
+        {
+          source: '/',
+          destination: '/ar',
+        },
+      ],
     };
   },
   images: {

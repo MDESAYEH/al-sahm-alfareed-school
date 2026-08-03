@@ -19,12 +19,25 @@ interface ComplaintData {
 // دالة إرسال البريد الإلكتروني
 async function sendComplaintEmail(data: ComplaintData, ticketCode: string) {
   try {
+    // التحقق من وجود المتغيرات البيئية
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+      console.error('❌ Missing EMAIL_USER or EMAIL_PASSWORD environment variables');
+      throw new Error('Email configuration is missing');
+    }
+
+    console.log('📧 Attempting to send email with user:', process.env.EMAIL_USER);
+
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER || 'alsahmalfareedinfo@gmail.com',
+        user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD,
       },
+      // إضافة خيارات إضافية لضمان العمل
+      secure: true,
+      tls: {
+        rejectUnauthorized: false
+      }
     });
 
     const emailHtml = `
@@ -179,18 +192,25 @@ ${data.description.replace(/<br\/>/g, '\n')}
     `;
 
     const mailOptions = {
-      from: `"مدرسة السهم الفريد | Al-Sahm Al-Fareed School" <${process.env.EMAIL_USER || 'alsahmalfareedinfo@gmail.com'}>`,
-      to: 'alsahmalfareedinfo@gmail.com',
+      from: `"مدرسة السهم الفريد | Al-Sahm Al-Fareed School" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER, // إرسال إلى نفس البريد
       subject: `🎯 شكوى جديدة | New Complaint - ${ticketCode}`,
       html: emailHtml,
       replyTo: data.email,
     };
 
+    console.log('📤 Sending email to:', process.env.EMAIL_USER);
     const info = await transporter.sendMail(mailOptions);
     console.log('✅ Email sent successfully:', info.messageId);
+    console.log('📬 Email accepted by:', info.accepted);
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('❌ Error sending email:', error);
+    // إضافة تفاصيل أكثر عن الخطأ
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
     throw error;
   }
 }
@@ -213,17 +233,24 @@ export async function POST(request: NextRequest) {
     const ticketCode = 'SHK-' + crypto.randomBytes(3).toString('hex').toUpperCase() + '-' + Date.now().toString(36).toUpperCase();
 
     // إرسال البريد الإلكتروني
+    let emailSent = false;
+    let emailError = null;
+    
     try {
-      await sendComplaintEmail(data, ticketCode);
+      const emailResult = await sendComplaintEmail(data, ticketCode);
+      emailSent = true;
       console.log(`✅ Complaint email sent successfully for ticket: ${ticketCode}`);
-    } catch (emailError) {
+    } catch (emailError: any) {
       console.error('❌ Failed to send complaint email:', emailError);
-      // لا نفشل العملية إذا فشل البريد
+      emailError = emailError.message || 'Unknown email error';
+      // نستمر بالعملية حتى لو فشل البريد
     }
 
     // إرجاع النتيجة
     return NextResponse.json({
       success: true,
+      emailSent,
+      emailError: emailError || undefined,
       data: {
         ticketCode,
         fullName: data.fullName,

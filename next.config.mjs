@@ -1,4 +1,6 @@
 import createNextIntlPlugin from "next-intl/plugin";
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
+import { join, dirname } from 'path';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
@@ -62,6 +64,17 @@ const finalConfig = withNextIntl(nextConfig);
 // Strip invalid experimental keys that next-intl might inject for older Next.js versions
 if (finalConfig.experimental && finalConfig.experimental.turbo) {
   delete finalConfig.experimental.turbo;
+}
+
+// Create middleware.js.nft.json if it doesn't exist
+const nftPath = join(process.cwd(), '.next', 'server', 'middleware.js.nft.json');
+try {
+  if (!existsSync(nftPath)) {
+    mkdirSync(dirname(nftPath), { recursive: true });
+    writeFileSync(nftPath, JSON.stringify({ version: 1, files: [] }));
+  }
+} catch (error) {
+  // Ignore errors during config time
 }
 
 export default finalConfig;

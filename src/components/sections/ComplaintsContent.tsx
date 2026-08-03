@@ -94,9 +94,9 @@ const priorityLabels: Record<"ar" | "en", Record<PriorityLevel, { label: string;
 const educationStages: Record<"ar" | "en", Record<string, { label: string; years: string[] }>> = {
   ar: {
     kindergarten: { label: "رياض الأطفال", years: [] },
-    primary: { label: "المرحلة الابتدائية", years: ["الأول الابتدائي", "الثاني الابتدائي", "الثالث الابتدائي", "الرابع الابتدائي", "الخامس الابتدائي", "السادس الابتدائي"] },
-    preparatory: { label: "المرحلة الإعدادية", years: ["الأول الإعدادي", "الثاني الإعدادي", "الثالث الإعدادي"] },
-    secondary: { label: "المرحلة الثانوية", years: ["الأول الثانوي", "الثاني الثانوي علمي", "الثاني الثانوي أدبي", "الثالث الثانوي علمي", "الثالث الثانوي أدبي"] },
+    primary: { label: "المرحلة الابتدائية", years: ["أول ابتدائي", "ثاني ابتدائي", "ثالث ابتدائي", "رابع ابتدائي", "خامس ابتدائي", "سادس ابتدائي"] },
+    preparatory: { label: "المرحلة الإعدادية", years: ["أول إعدادي", "ثاني الإعدادي", "ثالث الإعدادي"] },
+    secondary: { label: "المرحلة الثانوية", years: ["أول ثانوي", "ثاني ثانوي علمي", "ثاني ثانوي أدبي", "ثالث ثانوي علمي", "ثالث ثانوي أدبي"] },
   },
   en: {
     kindergarten: { label: "Kindergarten", years: [] },
@@ -389,7 +389,8 @@ export default function ComplaintsContent({
                       icon: MapPin, 
                       label: location_label, 
                       value: complaintData?.info?.locationValue || (isRTL ? "ليبيا - طرابلس - طريق المشتل" : "Libya - Tripoli"), 
-                      color: "from-teal-400 to-cyan-500" 
+                      color: "from-teal-400 to-cyan-500",
+                      link: "https://maps.app.goo.gl/M8AT5xLvGNBny7Tw5"
                     },
                     { 
                       icon: Clock, 
@@ -399,7 +400,11 @@ export default function ComplaintsContent({
                     }
                   ].map((item, idx) => {
                     const WrapperComponent = item.link ? 'a' : 'div';
-                    const wrapperProps = item.link ? { href: item.link } : {};
+                    const wrapperProps = item.link ? { 
+                      href: item.link,
+                      target: item.link.startsWith('http') ? '_blank' : undefined,
+                      rel: item.link.startsWith('http') ? 'noopener noreferrer' : undefined
+                    } : {};
                     
                     return (
                       <motion.div

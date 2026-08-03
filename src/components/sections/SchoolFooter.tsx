@@ -126,13 +126,18 @@ export default function SchoolFooter() {
               </h4>
               
               <div className="space-y-3">
-                {/* العنوان */}
-                <div className="group flex items-center gap-3.5 p-3.5 rounded-xl bg-slate-50/80 border border-slate-200 hover:border-slate-300 transition-colors">
+                {/* العنوان - Google Maps Link */}
+                <a
+                  href="https://maps.app.goo.gl/M8AT5xLvGNBny7Tw5"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3.5 p-3.5 rounded-xl bg-slate-50/80 border border-slate-200 hover:border-brand-accent/40 transition-colors cursor-pointer"
+                >
                   <div className="p-2.5 rounded-lg bg-white text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-colors shadow-sm">
                     <MapPin className="w-4 h-4" />
                   </div>
-                  <span className="text-slate-700 text-sm">{data.contact.address}</span>
-                </div>
+                  <span className="text-slate-700 group-hover:text-slate-900 text-sm transition-colors">{data.contact.address}</span>
+                </a>
 
                 {/* رقم الهاتف */}
                 <a

@@ -247,10 +247,18 @@ export default function ContactContent({
 
                                 <div className="space-y-4">
                                     {[
-                                        { icon: Mail, label: email_label, value: contactData?.info?.emailValue || "info@alrawafid.ly", color: "from-blue-500 to-sky-400" },
-                                        { icon: Phone, label: phone_label, value: contactData?.info?.phoneValue || "+218 91 000 0000", color: "from-emerald-500 to-teal-400", isLtr: true },
-                                        { icon: MapPin, label: location_label, value: contactData?.info?.locationValue || (locale === 'ar' ? "ليبيا - طرابلس" : "Libya - Tripoli"), color: "from-orange-500 to-amber-400" }
-                                    ].map((item, idx) => (
+                                        { icon: Mail, label: email_label, value: contactData?.info?.emailValue || "info@alrawafid.ly", color: "from-blue-500 to-sky-400", link: "mailto:alsahmalfareedinfo@gmail.com" },
+                                        { icon: Phone, label: phone_label, value: contactData?.info?.phoneValue || "+218 91 000 0000", color: "from-emerald-500 to-teal-400", isLtr: true, link: "tel:0945437366" },
+                                        { icon: MapPin, label: location_label, value: contactData?.info?.locationValue || (locale === 'ar' ? "ليبيا - طرابلس" : "Libya - Tripoli"), color: "from-orange-500 to-amber-400", link: "https://maps.app.goo.gl/M8AT5xLvGNBny7Tw5" }
+                                    ].map((item, idx) => {
+                                        const Component = item.link ? 'a' : 'div';
+                                        const linkProps = item.link ? {
+                                            href: item.link,
+                                            target: item.link.startsWith('http') ? '_blank' : undefined,
+                                            rel: item.link.startsWith('http') ? 'noopener noreferrer' : undefined
+                                        } : {};
+                                        
+                                        return (
                                         <motion.div
                                             key={idx}
                                             initial={{ opacity: 0, y: 20 }}
@@ -258,13 +266,17 @@ export default function ContactContent({
                                             viewport={{ once: true }}
                                             transition={{ delay: idx * 0.1 }}
                                             whileHover={{ scale: 1.02, x: 10 }}
-                                            className={cn(
-                                                "group relative flex items-center gap-5 p-5 rounded-[2rem] border transition-all duration-500 backdrop-blur-3xl overflow-hidden",
-                                                isDark
-                                                    ? "bg-white/5 border-white/5 hover:border-white/15"
-                                                    : "bg-white/70 border-sky-100 shadow-xl shadow-sky-900/5 hover:border-sky-300"
-                                            )}
                                         >
+                                            <Component
+                                                {...linkProps}
+                                                className={cn(
+                                                    "group relative flex items-center gap-5 p-5 rounded-[2rem] border transition-all duration-500 backdrop-blur-3xl overflow-hidden",
+                                                    item.link && "cursor-pointer",
+                                                    isDark
+                                                        ? "bg-white/5 border-white/5 hover:border-white/15"
+                                                        : "bg-white/70 border-sky-100 shadow-xl shadow-sky-900/5 hover:border-sky-300"
+                                                )}
+                                            >
                                             <div className={cn(
                                                 "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:rotate-6",
                                                 isDark ? "bg-white/5 text-primary" : "bg-sky-50 text-sky-500"
@@ -291,8 +303,9 @@ export default function ContactContent({
                                                 "absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-10 transition-opacity duration-700 pointer-events-none",
                                                 item.color
                                             )} />
+                                            </Component>
                                         </motion.div>
-                                    ))}
+                                    );})}
                                 </div>
                             </div>
 

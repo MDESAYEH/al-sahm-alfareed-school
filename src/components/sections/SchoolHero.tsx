@@ -31,7 +31,7 @@ interface SchoolHeroProps {
 }
 
 const defaultStats = [
-  { value: 250, suffix: '+', label: { ar: 'طالب وطالبة', en: 'Students' }, icon: Users },
+  { value: 400, suffix: '+', label: { ar: 'طالب وطالبة', en: 'Students' }, icon: Users },
   { value: 20, suffix: '+', label: { ar: 'معلم متخصص', en: 'Teachers' }, icon: Users },
   { value: 87, suffix: '%', label: { ar: 'نسبة النجاح', en: 'Success Rate' }, icon: Award },
   { value: 12, suffix: '+', label: { ar: 'عام من التميز', en: 'Years of Excellence' }, icon: Sparkles },

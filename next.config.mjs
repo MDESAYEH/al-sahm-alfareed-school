@@ -43,6 +43,10 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  // تعطيل file tracing للـ middleware لحل مشكلة Vercel
+  outputFileTracingIncludes: {
+    '/': [],
+  },
   // إعدادات خاصة بـ Vercel لتجنب أخطاء middleware
   experimental: {
     serverActions: {

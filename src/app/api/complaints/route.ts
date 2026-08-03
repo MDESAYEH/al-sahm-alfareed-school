@@ -171,8 +171,8 @@ ${data.description.replace(/<br\/>/g, '\n')}
         </div>
 
         <div style="text-align: center; margin-top: 20px; color: #888; font-size: 12px;">
-          <p>هذه الرسالة من نظام إدارة الشكاوى - مدرسة السهم الفريد</p>
-          <p>This is an message from Al-Sahm Al-Fareed School Complaint System</p>
+          <p>هذه رسالة تلقائية من نظام إدارة الشكاوى - مدرسة السهم الفريد</p>
+          <p>This is an automated message from Al-Sahm Al-Fareed School Complaint System</p>
         </div>
       </body>
       </html>

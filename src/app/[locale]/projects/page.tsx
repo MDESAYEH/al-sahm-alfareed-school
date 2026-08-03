@@ -1,5 +1,4 @@
 import PortfolioGrid from "@/components/sections/PortfolioGrid";
-import { getProjects } from "@/services/strapi.service";
 import { getTranslations } from "next-intl/server";
 
 export default async function ProjectsPage({
@@ -8,8 +7,8 @@ export default async function ProjectsPage({
     params: Promise<{ locale: string }>
 }) {
     const { locale } = await params;
-    // Fetch dynamic projects from Strapi (Server-side)
-    const projects = await getProjects(locale);
+    // تم تعطيل Strapi - استخدام مشاريع فارغة
+    const projects: any[] = [];
     const t = await getTranslations({ locale, namespace: "PortfolioGrid" });
 
     const categories = [

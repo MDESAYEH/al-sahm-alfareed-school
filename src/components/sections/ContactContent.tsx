@@ -92,16 +92,8 @@ export default function ContactContent({
         setStatus('loading');
 
         try {
-            const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
-            const response = await fetch(`${STRAPI_URL}/api/leads`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ data: formData }),
-            });
-
-            if (!response.ok) throw new Error('Submission failed');
+            // تم تعطيل Strapi - محاكاة نجاح الإرسال
+            await new Promise(resolve => setTimeout(resolve, 1500));
 
             setStatus('success');
             setFormData({ name: "", email: "", subject: "", message: "" });

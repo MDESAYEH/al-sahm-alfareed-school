@@ -1,12 +1,11 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
+import { getMessages } from 'next-intl/server';
 import { Alexandria } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import Navbar from '@/components/shared/Navbar';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { PageTransition } from '@/components/ui/PageTransition';
-import { getGlobalSettings } from '@/services/strapi.service';
 import '@/styles/globals.css';
 
 const alexandria = Alexandria({
@@ -18,7 +17,6 @@ const alexandria = Alexandria({
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
-    const settings = await getGlobalSettings(locale);
 
     const defaultTitle = locale === 'en' 
         ? 'Al-Sahm Al-Fareed Private School | Excellence in Education' 
@@ -30,14 +28,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     return {
         metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
         title: {
-            default: settings?.siteName || defaultTitle,
-            template: `%s | ${settings?.siteName || defaultTitle}`,
+            default: defaultTitle,
+            template: `%s | ${defaultTitle}`,
         },
-        description: settings?.siteDescription || defaultDesc,
-        keywords: settings?.siteKeywords || "private school, education, Libya, Tripoli, مدرسة خاصة, تعليم, ليبيا",
-        authors: [{ name: settings?.siteName || 'Al-Sahm Al-Fareed' }],
-        creator: settings?.siteName || 'Al-Sahm Al-Fareed',
-        publisher: settings?.siteName || 'Al-Sahm Al-Fareed',
+        description: defaultDesc,
+        keywords: "private school, education, Libya, Tripoli, مدرسة خاصة, تعليم, ليبيا",
+        authors: [{ name: 'Al-Sahm Al-Fareed' }],
+        creator: 'Al-Sahm Al-Fareed',
+        publisher: 'Al-Sahm Al-Fareed',
         robots: {
             index: true,
             follow: true,
@@ -53,22 +51,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             type: 'website',
             locale: locale === 'ar' ? 'ar_LY' : 'en_US',
             url: '/',
-            siteName: settings?.siteName || defaultTitle,
-            title: settings?.siteName || defaultTitle,
-            description: settings?.siteDescription || defaultDesc,
+            siteName: defaultTitle,
+            title: defaultTitle,
+            description: defaultDesc,
             images: [
                 {
                     url: '/logo.png',
                     width: 1200,
                     height: 630,
-                    alt: settings?.siteName || defaultTitle,
+                    alt: defaultTitle,
                 },
             ],
         },
         twitter: {
             card: 'summary_large_image',
-            title: settings?.siteName || defaultTitle,
-            description: settings?.siteDescription || defaultDesc,
+            title: defaultTitle,
+            description: defaultDesc,
             images: ['/logo.png'],
         },
         alternates: {
@@ -103,7 +101,8 @@ export default async function LocaleLayout({
     if (!locales.includes(locale as any)) notFound();
 
     const messages = await getMessages();
-    const settings = await getGlobalSettings(locale);
+    // تم تعطيل Strapi
+    const settings: { siteName?: string; siteDescription?: string; siteKeywords?: string } | null = null;
 
     const isRtl = locale === 'ar';
 

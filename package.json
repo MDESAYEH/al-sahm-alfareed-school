@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "node -e \"const fs = require('fs'); const path = require('path'); const nftPath = path.join('.next', 'server', 'middleware.js.nft.json'); if (!fs.existsSync(nftPath)) { fs.mkdirSync(path.dirname(nftPath), { recursive: true }); fs.writeFileSync(nftPath, JSON.stringify({ version: 1, files: [] })); }\"",
+    "postbuild": "node -e \"const fs = require('fs'); const path = require('path'); const dir = path.join('.next', 'server'); const nftPath = path.join(dir, 'middleware.js.nft.json'); const jsPath = path.join(dir, 'middleware.js'); if (!fs.existsSync(jsPath)) { fs.writeFileSync(jsPath, 'module.exports = {};'); } if (!fs.existsSync(nftPath)) { fs.writeFileSync(nftPath, JSON.stringify({ version: 1, files: [] })); }\"",
     "start": "next start",
     "lint": "next lint"
   },

@@ -347,29 +347,6 @@ export default function AcademicStages() {
                         </li>
                       ))}
                     </ul>
-
-                    {/* CTA */}
-                    <motion.button
-                      whileHover={{ x: isRTL ? -4 : 4 }}
-                      transition={{ duration: 0.2 }}
-                      aria-label={isRTL ? `اعرف المزيد عن ${stage.name}` : `Learn more about ${stage.name}`}
-                      className={cn(
-                        'flex items-center gap-2.5 font-bold text-base lg:text-[1.05rem]',
-                        'transition-all duration-200 group/cta',
-                        scheme.ctaText,
-                      )}
-                    >
-                      <span className="border-b-2 border-current pb-0.5 border-opacity-30 group-hover/cta:border-opacity-100 transition-opacity duration-200">
-                        {isRTL ? 'اعرف المزيد' : 'Learn More'}
-                      </span>
-                      <ArrowLeft 
-                        className={cn(
-                          'w-5 h-5 transition-transform duration-200',
-                          isRTL ? '' : 'rotate-180',
-                          'group-hover/cta:translate-x-1'
-                        )} 
-                      />
-                    </motion.button>
                   </div>
 
                   {/* Bottom Accent Progress Line */}

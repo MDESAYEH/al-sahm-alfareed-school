@@ -90,6 +90,22 @@ const priorityLabels: Record<"ar" | "en", Record<PriorityLevel, { label: string;
   },
 };
 
+// المراحل الدراسية والسنوات المتاحة لكل مرحلة
+const educationStages: Record<"ar" | "en", Record<string, { label: string; years: string[] }>> = {
+  ar: {
+    kindergarten: { label: "رياض الأطفال", years: [] },
+    primary: { label: "المرحلة الابتدائية", years: ["الأول الابتدائي", "الثاني الابتدائي", "الثالث الابتدائي", "الرابع الابتدائي", "الخامس الابتدائي", "السادس الابتدائي"] },
+    preparatory: { label: "المرحلة الإعدادية", years: ["الأول الإعدادي", "الثاني الإعدادي", "الثالث الإعدادي"] },
+    secondary: { label: "المرحلة الثانوية", years: ["الأول الثانوي", "الثاني الثانوي علمي", "الثاني الثانوي أدبي", "الثالث الثانوي علمي", "الثالث الثانوي أدبي"] },
+  },
+  en: {
+    kindergarten: { label: "Kindergarten", years: [] },
+    primary: { label: "Primary School", years: ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6"] },
+    preparatory: { label: "Preparatory School", years: ["Grade 7", "Grade 8", "Grade 9"] },
+    secondary: { label: "Secondary School", years: ["Grade 10", "Grade 11 Science", "Grade 11 Arts", "Grade 12 Science", "Grade 12 Arts"] },
+  },
+};
+
 export default function ComplaintsContent({
   complaintData,
   badge,
@@ -119,7 +135,8 @@ export default function ComplaintsContent({
     email: string;
     phone: string;
     studentName: string;
-    studentClass: string;
+    studentStage: string;  // المرحلة الدراسية
+    studentClass: string;  // السنة الدراسية
     complaintType: ComplaintType | "";
     relation: RelationType | "";
     priority: PriorityLevel;
@@ -131,6 +148,7 @@ export default function ComplaintsContent({
     email: "",
     phone: "",
     studentName: "",
+    studentStage: "",
     studentClass: "",
     complaintType: "",
     relation: "",
@@ -178,12 +196,19 @@ export default function ComplaintsContent({
 
     try {
       // استخدام Next.js API Route بدلاً من Strapi
+      // دمج المرحلة والسنة في حقل studentClass إذا كانا موجودين
+      let studentClassValue = formData.studentClass;
+      if (formData.studentStage && !formData.studentClass) {
+        // إذا تم اختيار المرحلة فقط (مثل رياض الأطفال)
+        studentClassValue = educationStages[lang][formData.studentStage]?.label || formData.studentStage;
+      }
+      
       const payload = {
         fullName: formData.fullName,
         email: formData.email,
         phone: formData.phone,
         studentName: formData.studentName || undefined,
-        studentClass: formData.studentClass || undefined,
+        studentClass: studentClassValue || undefined,
         complaintType: formData.complaintType || undefined,
         relation: formData.relation || undefined,
         priority: formData.priority,
@@ -209,7 +234,7 @@ export default function ComplaintsContent({
       setStatus('success');
       setTicketInfo({ code: ticketCode });
       setFormData({
-        fullName: "", email: "", phone: "", studentName: "", studentClass: "",
+        fullName: "", email: "", phone: "", studentName: "", studentStage: "", studentClass: "",
         complaintType: "", relation: "", priority: "medium", subject: "", description: "", privacyAgreed: false
       });
       setErrors({});
@@ -522,8 +547,8 @@ export default function ComplaintsContent({
                       </div>
                     </FieldWrapper>
 
-                    {/* Row: Student Name + Class */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Row: Student Name + Stage + Class */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       <FieldWrapper
                         label={isRTL ? "اسم الطالب / الطالبة" : "Student Name"}
                         hint={isRTL ? "(اختياري)" : "(Optional)"}
@@ -540,17 +565,47 @@ export default function ComplaintsContent({
                       </FieldWrapper>
 
                       <FieldWrapper
-                        label={isRTL ? "الصف والشعبة" : "Class / Grade"}
+                        label={isRTL ? "المرحلة الدراسية" : "Education Stage"}
+                        hint={isRTL ? "(اختياري)" : "(Optional)"}
                         isRTL={isRTL}
                       >
-                        <input
-                          type="text"
+                        <select
+                          dir={isRTL ? 'rtl' : 'ltr'}
+                          value={formData.studentStage}
+                          onChange={(e) => setFormData({ ...formData, studentStage: e.target.value, studentClass: "" })}
+                          className={inputClasses(false)}
+                        >
+                          <option value="">{isRTL ? "اختر المرحلة" : "Select Stage"}</option>
+                          {Object.entries(educationStages[lang]).map(([key, value]) => (
+                            <option key={key} value={key}>{value.label}</option>
+                          ))}
+                        </select>
+                      </FieldWrapper>
+
+                      <FieldWrapper
+                        label={isRTL ? "السنة الدراسية" : "Academic Year"}
+                        hint={isRTL ? "(اختياري)" : "(Optional)"}
+                        isRTL={isRTL}
+                      >
+                        <select
                           dir={isRTL ? 'rtl' : 'ltr'}
                           value={formData.studentClass}
                           onChange={(e) => setFormData({ ...formData, studentClass: e.target.value })}
                           className={inputClasses(false)}
-                          placeholder={isRTL ? "مثال: الصف الأول الإعدادي أ" : "e.g. 7th Grade / Class A"}
-                        />
+                          disabled={!formData.studentStage || educationStages[lang][formData.studentStage]?.years.length === 0}
+                        >
+                          <option value="">
+                            {!formData.studentStage 
+                              ? (isRTL ? "اختر المرحلة أولاً" : "Select stage first")
+                              : educationStages[lang][formData.studentStage]?.years.length === 0
+                                ? (isRTL ? "لا يوجد سنوات" : "No years available")
+                                : (isRTL ? "اختر السنة" : "Select year")
+                            }
+                          </option>
+                          {formData.studentStage && educationStages[lang][formData.studentStage]?.years.map((year) => (
+                            <option key={year} value={year}>{year}</option>
+                          ))}
+                        </select>
                       </FieldWrapper>
                     </div>
 

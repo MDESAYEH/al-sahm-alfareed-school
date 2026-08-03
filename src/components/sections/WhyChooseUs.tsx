@@ -11,7 +11,7 @@ const reasons = {
     {
       icon: Globe,
       title: 'شراكات دولية',
-      description: 'تعاون مع مؤسسات تعليمية عالمية رائدة',
+      description: 'قمنا بالتواصل مع مؤسسات تعليمية عالمية رائدة لتعزيز فرص التعاون وتبادل الخبرات.',
       size: 'medium',
       color: 'secondary',
     },

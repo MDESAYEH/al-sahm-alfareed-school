@@ -317,7 +317,7 @@ export default function TrustSection() {
                   <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/60 backdrop-blur-sm border border-white/80">
                     <div className={cn('w-2 h-2 rounded-full animate-pulse bg-gradient-to-r', scheme.accentLine)} />
                     <span className={cn('text-xs font-bold', scheme.labelColor)}>
-                      {isRTL ? 'مصدق' : 'Verified'}
+                      {isRTL ? ' ' : 'Verified'}
                     </span>
                   </div>
                 </div>

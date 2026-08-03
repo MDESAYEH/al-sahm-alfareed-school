@@ -16,6 +16,34 @@ interface ComplaintData {
   description: string;
 }
 
+// ترجمة نوع الشكوى والصلة للعربية
+const translateComplaintType = (type: string | undefined): string => {
+  if (!type) return '';
+  const translations: Record<string, string> = {
+    'academic': 'أكاديمي',
+    'behavioral': 'سلوكي',
+    'administrative': 'إداري',
+    'financial': 'مالي',
+    'facilities': 'المرافق',
+    'transport': 'النقل',
+    'bullying': 'التنمر',
+    'other': 'أخرى'
+  };
+  return translations[type] || type;
+};
+
+const translateRelation = (relation: string | undefined): string => {
+  if (!relation) return '';
+  const translations: Record<string, string> = {
+    'parent': 'ولي أمر',
+    'student': 'طالب',
+    'teacher': 'معلم',
+    'staff': 'موظف',
+    'other': 'آخر'
+  };
+  return translations[relation] || relation;
+};
+
 // دالة إرسال البريد الإلكتروني
 async function sendComplaintEmail(data: ComplaintData, ticketCode: string) {
   try {
@@ -71,6 +99,7 @@ async function sendComplaintEmail(data: ComplaintData, ticketCode: string) {
             padding: 10px;
             background: white;
             border-right: 4px solid #667eea;
+            text-align: center;
           }
           .label {
             font-weight: bold;
@@ -141,14 +170,14 @@ async function sendComplaintEmail(data: ComplaintData, ticketCode: string) {
           ${data.relation ? `
           <div class="field">
             <span class="label">الصلة / Relation:</span>
-            <span class="value">${data.relation}</span>
+            <span class="value">${translateRelation(data.relation)}</span>
           </div>
           ` : ''}
 
           ${data.complaintType ? `
           <div class="field">
             <span class="label">نوع الشكوى / Type:</span>
-            <span class="value">${data.complaintType}</span>
+            <span class="value">${translateComplaintType(data.complaintType)}</span>
           </div>
           ` : ''}
 
@@ -184,8 +213,8 @@ ${data.description.replace(/<br\/>/g, '\n')}
         </div>
 
         <div style="text-align: center; margin-top: 20px; color: #888; font-size: 12px;">
-          <p>هذه رسالة تلقائية من نظام إدارة الشكاوى - مدرسة السهم الفريد</p>
-          <p>This is an automated message from Al-Sahm Al-Fareed School Complaint System</p>
+          <p>هذه رسالة من نظام إدارة الشكاوى - مدرسة السهم الفريد</p>
+          <p>Message from Al-Sahm Al-Fareed School Complaint System</p>
         </div>
       </body>
       </html>

@@ -7,7 +7,7 @@ export default createMiddleware({
   // Used when no locale matches
   defaultLocale: 'ar',
   
-  // منع التعارض مع API Routes
+  // Automatically redirect root path to default locale
   localePrefix: 'always'
 });
 

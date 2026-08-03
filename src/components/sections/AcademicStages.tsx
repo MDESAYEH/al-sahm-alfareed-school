@@ -210,7 +210,7 @@ export default function AcademicStages() {
           role="list"
           variants={{
             hidden: {},
-            show: { transition: { staggerChildren: 0.04, delayChildren: 0 } }
+            show: { transition: { staggerChildren: 0.02, delayChildren: 0 } }
           }}
           initial="hidden"
           whileInView="show"
@@ -224,23 +224,23 @@ export default function AcademicStages() {
                 key={i}
                 role="listitem"
                 variants={{
-                  hidden: { opacity: 0, y: 15, scale: 0.97 },
+                  hidden: { opacity: 0, y: 10, scale: 0.96 },
                   show: { 
                     opacity: 1, 
                     y: 0, 
                     scale: 1, 
-                    transition: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] } 
+                    transition: { duration: 0.12, ease: [0.25, 0.1, 0.25, 1] } 
                   }
                 }}
                 whileHover={{ 
                   y: -10, 
                   scale: 1.03, 
-                  transition: { duration: 0.15, ease: [0.25, 0.1, 0.25, 1] } 
+                  transition: { duration: 0.08, ease: [0.25, 0.1, 0.25, 1] } 
                 }}
                 className="group"
               >
                 <div className={cn(
-                  'relative h-full rounded-[2rem] p-7 lg:p-8 overflow-hidden transition-all duration-150',
+                  'relative h-full rounded-[2rem] p-7 lg:p-8 overflow-hidden transition-all duration-75',
                   'bg-gradient-to-br backdrop-blur-sm border',
                   'shadow-xl hover:shadow-2xl',
                   scheme.cardBg,
@@ -249,7 +249,7 @@ export default function AcademicStages() {
                 )}>
                   {/* Decorative stage number badge (top-right or top-left) */}
                   <div className={cn(
-                    'absolute flex items-center justify-center font-extrabold rounded-2xl shadow-lg shadow-black/5 transition-all duration-150',
+                    'absolute flex items-center justify-center font-extrabold rounded-2xl shadow-lg shadow-black/5 transition-all duration-75',
                     'bg-gradient-to-br',
                     scheme.stageNumberBg,
                     scheme.stageNumberText,
@@ -265,7 +265,7 @@ export default function AcademicStages() {
 
                   {/* Shimmer Effect */}
                   <div 
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-100 pointer-events-none"
                     style={{
                       background: `linear-gradient(${isRTL ? '225deg' : '135deg'}, rgba(255,255,255,0.7) 0%, transparent 35%, transparent 65%, rgba(255,255,255,0.45) 100%)`,
                     }}
@@ -274,7 +274,7 @@ export default function AcademicStages() {
 
                   {/* Radial highlight */}
                   <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-180 pointer-events-none"
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-90 pointer-events-none"
                     style={{
                       background: `radial-gradient(circle at ${isRTL ? '20% 20%' : '80% 20%'}, rgba(255,255,255,0.4), transparent 60%)`,
                     }}
@@ -284,7 +284,7 @@ export default function AcademicStages() {
                   <div className="relative z-10 flex flex-col h-full">
                     {/* Icon Container */}
                     <div className={cn(
-                      'rounded-2xl flex items-center justify-center mb-6 transition-all duration-150 shadow-xl shadow-black/5',
+                      'rounded-2xl flex items-center justify-center mb-6 transition-all duration-75 shadow-xl shadow-black/5',
                       'bg-gradient-to-br',
                       'group-hover:scale-110 group-hover:-rotate-3',
                       scheme.iconBg,
@@ -292,7 +292,7 @@ export default function AcademicStages() {
                     )}>
                       <Icon 
                         className={cn(
-                          'drop-shadow-md transition-transform duration-150',
+                          'drop-shadow-md transition-transform duration-75',
                           'w-8 h-8 lg:w-9 lg:h-9',
                           scheme.iconColor,
                           'group-hover:scale-110'
@@ -306,7 +306,7 @@ export default function AcademicStages() {
                         'font-extrabold mb-3 leading-tight tracking-tight',
                         'text-2xl lg:text-3xl',
                         scheme.titleColor,
-                        'group-hover:scale-[1.02] transition-transform duration-150'
+                        'group-hover:scale-[1.02] transition-transform duration-75'
                       )}>
                         {stage.name}
                       </h3>
@@ -336,7 +336,7 @@ export default function AcademicStages() {
                         <li key={j} className={cn('flex items-start gap-3', scheme.featureText)}>
                           <CheckCircle2 
                             className={cn(
-                              'w-5 h-5 mt-0.5 flex-shrink-0 transition-all duration-120',
+                              'w-5 h-5 mt-0.5 flex-shrink-0 transition-all duration-60',
                               'bg-clip-text',
                               scheme.ctaText,
                               'group-hover:scale-110'
@@ -351,7 +351,7 @@ export default function AcademicStages() {
 
                   {/* Bottom Accent Progress Line */}
                   <div className={cn(
-                    'absolute bottom-0 h-1.5 rounded-b-[2rem] bg-gradient-to-r transition-all duration-250 ease-out',
+                    'absolute bottom-0 h-1.5 rounded-b-[2rem] bg-gradient-to-r transition-all duration-125 ease-out',
                     isRTL ? 'right-0' : 'left-0',
                     'w-0 group-hover:w-full',
                     scheme.accentLine
@@ -359,7 +359,7 @@ export default function AcademicStages() {
 
                   {/* Corner decorative accent */}
                   <div className={cn(
-                    'absolute w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] opacity-40 transition-all duration-180',
+                    'absolute w-16 h-16 lg:w-20 lg:h-20 rounded-[1.5rem] opacity-40 transition-all duration-90',
                     'bg-gradient-to-br pointer-events-none',
                     scheme.accentLine,
                     '-z-10 blur-[2px] scale-75',

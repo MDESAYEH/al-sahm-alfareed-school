@@ -7,11 +7,42 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/:path((?!ar|en|_next|api|images|videos|visuals).*)',
-        destination: '/ar/:path*',
+        source: '/',
+        destination: '/ar',
         permanent: false,
       },
     ];
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // إعادة كتابة المسارات بدون locale إلى /ar
+        {
+          source: '/about',
+          destination: '/ar/about',
+        },
+        {
+          source: '/services',
+          destination: '/ar/services',
+        },
+        {
+          source: '/projects',
+          destination: '/ar/projects',
+        },
+        {
+          source: '/contact',
+          destination: '/ar/contact',
+        },
+        {
+          source: '/complaints',
+          destination: '/ar/complaints',
+        },
+        {
+          source: '/soon',
+          destination: '/ar/soon',
+        },
+      ],
+    };
   },
   images: {
     formats: ['image/avif', 'image/webp'],

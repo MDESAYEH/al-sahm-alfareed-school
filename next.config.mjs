@@ -43,7 +43,12 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  swcMinify: true,
+  // إعدادات خاصة بـ Vercel لتجنب أخطاء middleware
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
+  },
   // Fix for Next.js 16 + next-intl resolution error in Turbopack
   turbopack: {
     resolveAlias: {

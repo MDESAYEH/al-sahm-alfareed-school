@@ -5,10 +5,23 @@ export default createMiddleware({
   locales: ['ar', 'en'],
 
   // Used when no locale matches
-  defaultLocale: 'ar'
+  defaultLocale: 'ar',
+  
+  // منع التعارض مع API Routes
+  localePrefix: 'always'
 });
 
 export const config = {
-  // Match only internationalized pathnames
-  matcher: ['/', '/(ar|en)/:path*']
+  // Match only internationalized pathnames, exclude API routes and static files
+  matcher: [
+    // Match all pathnames except for:
+    // - API routes
+    // - _next (Next.js internals)
+    // - Static files
+    '/((?!api|_next|_vercel|.*\\..*).*)',
+    // Match root
+    '/',
+    // Match locale pathnames
+    '/(ar|en)/:path*'
+  ]
 };

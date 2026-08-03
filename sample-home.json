@@ -1,0 +1,27 @@
+{
+  "data": {
+    "heroBadge": "Welcome",
+    "heroTitleLine1": "ALRawafed",
+    "heroTitleLine2": "United",
+    "heroSubtitle": "Your trusted partner in construction and development",
+    "servicesKicker": "Our Services",
+    "servicesTitle": "What We Do",
+    "servicesSubtitle": "Comprehensive construction solutions",
+    "aboutPanelTitle": "About Us",
+    "aboutPanelDesc": "Leading construction company with years of experience",
+    "aboutPoints": [
+      {
+        "point": "Quality Assurance"
+      },
+      {
+        "point": "Expert Team"
+      },
+      {
+        "point": "Timely Delivery"
+      }
+    ],
+    "techKicker": "Technology",
+    "techTitle": "Modern Approach",
+    "techSubtitle": "Using latest construction technology"
+  }
+}

@@ -1,0 +1,54 @@
+############################
+# OS
+############################
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+############################
+# Node
+############################
+node_modules
+.next
+dist
+build
+coverage
+*.tsbuildinfo
+.vercel
+
+############################
+# Logs
+############################
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+############################
+# Environment
+############################
+.env
+.env.*
+!.env.example
+
+############################
+# Strapi
+############################
+.strapi
+.strapi-updater.json
+.strapi-cloud.json
+exports
+license.txt
+
+############################
+# IDE
+############################
+.idea
+.vscode
+.eslintcache
+
+############################
+# Uploads
+############################
+public/uploads/*
+!public/uploads/.gitkeep

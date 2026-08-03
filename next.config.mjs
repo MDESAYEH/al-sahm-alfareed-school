@@ -53,6 +53,37 @@ const nextConfig = {
       'next-intl/config': './src/i18n/request.ts',
     },
   },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // Create middleware files during compilation
+      const oldEntry = config.entry;
+      config.entry = async () => {
+        const entries = await oldEntry();
+        const fs = require('fs');
+        const path = require('path');
+        const dir = path.join(process.cwd(), '.next', 'server');
+        const jsPath = path.join(dir, 'middleware.js');
+        const nftPath = path.join(dir, 'middleware.js.nft.json');
+        
+        try {
+          if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+          }
+          if (!fs.existsSync(jsPath)) {
+            fs.writeFileSync(jsPath, 'module.exports = {};');
+          }
+          if (!fs.existsSync(nftPath)) {
+            fs.writeFileSync(nftPath, JSON.stringify({ version: 1, files: [] }));
+          }
+        } catch (e) {
+          // Ignore
+        }
+        
+        return entries;
+      };
+    }
+    return config;
+  },
 };
 
 const finalConfig = withNextIntl(nextConfig);

@@ -1,6 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "next build && node scripts/create-middleware-files.js",
+  "buildCommand": "next build",
   "installCommand": "npm install",
   "regions": ["iad1"]
 }

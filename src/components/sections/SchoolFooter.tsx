@@ -20,7 +20,7 @@ export default function SchoolFooter() {
       contact: {
         title: 'تواصل معنا',
         address: 'ليبيا - طرابلس - طريق المشتل',
-        phone: '0913372084',
+        phone: '0945437366',
         email: 'alsahmalfareedinfo@gmail.com',
         hours: 'الأحد - الخميس: 8:00 ص - 3:00 م',
       },
@@ -36,7 +36,7 @@ export default function SchoolFooter() {
       contact: {
         title: 'Contact Us',
         address: 'Tripoli, Libya',
-        phone: '0913372084',
+        phone: '0945437366',
         email: 'alsahmalfareedinfo@gmail.com',
         hours: 'Sunday - Thursday: 8:00 AM - 3:00 PM',
       },

@@ -107,7 +107,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               addressLocality: 'Tripoli',
               addressCountry: 'LY',
             },
-            telephone: '0913372084',
+            telephone: '0945437366',
             email: 'alsahmalfareedinfo@gmail.com',
             areaServed: 'Libya',
             foundingDate: '2003',

@@ -1,0 +1,33 @@
+{
+  "Navbar": {
+    "links": {
+      "home": "Home",
+      "complaints": "Feedback & Complaints"
+    }
+  },
+  "common": {
+    "readMore": "Read More",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success"
+  },
+  "ComplaintsPage": {
+    "badge": "Support & Feedback",
+    "title_part1": "We hear",
+    "title_highlight": "you, We solve",
+    "subtitle": "We are committed to addressing your complaints and suggestions with complete confidentiality and positivity within 48 business hours. Every feedback helps us improve your children's experience.",
+    "info_title": "Direct Contact Channels",
+    "info_desc": "Reach out to us via any of the following channels for a quick and direct response from the school administration.",
+    "email_label": "Complaints Email",
+    "phone_label": "Direct Phone",
+    "location_label": "School Administration",
+    "hours_label": "Official Working Hours",
+    "form_title": "Submit Your Complaint",
+    "steps_title": "✅ How we handle your feedback (4 steps)",
+    "submit_btn": "Submit Complaint & Generate Ticket",
+    "success_message": "Thank you! Your complaint has been received successfully.",
+    "error_message": "An error occurred while sending your complaint. Please contact us by phone or try again later."
+  }
+}

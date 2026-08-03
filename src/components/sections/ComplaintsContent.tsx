@@ -265,7 +265,7 @@ export default function ComplaintsContent({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight mb-4 md:mb-6"
           >
             <span className="text-slate-800">{title_part1}</span>
           </motion.h1>
@@ -274,7 +274,7 @@ export default function ComplaintsContent({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight mb-6"
           >
             <span className="bg-gradient-to-r from-brand-signature via-indigo-500 to-brand-accent bg-clip-text text-transparent">
               {title_highlight}
@@ -285,7 +285,7 @@ export default function ComplaintsContent({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="max-w-2xl text-base md:text-lg text-slate-600/80 leading-relaxed mb-10"
+            className="max-w-2xl text-sm sm:text-base md:text-lg text-slate-600/80 leading-relaxed mb-8 md:mb-10 px-4 sm:px-0"
           >
             {subtitle}
           </motion.p>
@@ -297,10 +297,10 @@ export default function ComplaintsContent({
             transition={{ delay: 0.5, duration: 0.9 }}
             className="w-full max-w-5xl"
           >
-            <div className="text-sm md:text-base font-bold text-slate-500/70 mb-5">
+            <div className="text-sm md:text-base font-bold text-slate-500/70 mb-5 text-center">
               {steps_title}
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {processSteps.map((s, idx) => (
                 <motion.div
                   key={idx}
@@ -308,17 +308,17 @@ export default function ComplaintsContent({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + idx * 0.08, duration: 0.5 }}
                   whileHover={{ scale: 1.03, y: -4 }}
-                  className="relative group rounded-2xl p-5 bg-white/70 backdrop-blur-sm border border-slate-200/60 shadow-lg shadow-slate-900/5 hover:border-brand-signature/30 transition-all duration-300"
+                  className="relative group rounded-2xl p-4 md:p-5 bg-white/70 backdrop-blur-sm border border-slate-200/60 shadow-lg shadow-slate-900/5 hover:border-brand-signature/30 transition-all duration-300"
                 >
                   <div className={cn(
-                    "absolute -top-3 md:-top-4 w-10 h-10 md:w-12 md:h-12 rounded-2xl flex items-center justify-center text-lg md:text-xl font-black shadow-xl",
+                    "absolute w-10 h-10 md:w-12 md:h-12 rounded-2xl flex items-center justify-center text-lg md:text-xl font-black shadow-xl",
                     "bg-gradient-to-br from-brand-signature to-brand-accent text-white",
-                    isRTL ? "-right-2 md:-right-4" : "-left-2 md:-left-4"
+                    isRTL ? "-right-3 top-3" : "-left-3 top-3"
                   )}>
                     {s.n}
                   </div>
-                  <div className="pt-2">
-                    <h4 className="text-sm md:text-base font-extrabold text-slate-800 mb-1">{s.t}</h4>
+                  <div className="pt-8 md:pt-6">
+                    <h4 className="text-sm md:text-base font-extrabold text-slate-800 mb-1 leading-tight">{s.t}</h4>
                     <p className="text-xs md:text-sm text-slate-500 leading-relaxed">{s.d}</p>
                   </div>
                 </motion.div>
@@ -345,40 +345,77 @@ export default function ComplaintsContent({
 
                 <div className="space-y-4">
                   {[
-                    { icon: Mail, label: email_label, value: complaintData?.info?.emailValue || "alsahmalfareedinfo@gmail.com", color: "from-brand-signature to-indigo-500" },
-                    { icon: Phone, label: phone_label, value: complaintData?.info?.phoneValue || "3372084 091", color: "from-brand-accent to-amber-500", isLtr: true },
-                    { icon: MapPin, label: location_label, value: complaintData?.info?.locationValue || (isRTL ? "ليبيا - طرابلس - طريق المشتل" : "Libya - Tripoli"), color: "from-teal-400 to-cyan-500" },
-                    { icon: Clock, label: hours_label, value: complaintData?.info?.workingHoursValue || (isRTL ? "الأحد إلى الخميس - 8:00 صباحاً حتى 2:00 ظهراً" : "Sun to Thu — 8:00 AM to 2:00 PM"), color: "from-amber-400 to-orange-500" }
-                  ].map((item, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.08 }}
-                      whileHover={{ scale: 1.02, x: isRTL ? -6 : 6 }}
-                      className="group relative flex items-center gap-5 p-5 rounded-2xl border bg-white/70 backdrop-blur-sm shadow-xl shadow-slate-900/5 border-slate-200/60 hover:border-brand-signature/30 transition-all duration-300"
-                    >
-                      <div className={cn(
-                        "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:rotate-6",
-                        "bg-gradient-to-br text-white shadow-lg",
-                        item.color
-                      )}>
-                        <item.icon className="w-6 h-6" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <span className="block text-xs font-bold uppercase tracking-wider text-slate-500/70 mb-1">{item.label}</span>
-                        <p className={cn(
-                          "text-base md:text-lg font-bold text-slate-800",
-                          item.isLtr && "tracking-wide"
-                        )}>{item.value}</p>
-                      </div>
-                      <div className={cn(
-                        "absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none",
-                        item.color
-                      )} />
-                    </motion.div>
-                  ))}
+                    { 
+                      icon: Mail, 
+                      label: email_label, 
+                      value: complaintData?.info?.emailValue || "alsahmalfareedinfo@gmail.com", 
+                      color: "from-brand-signature to-indigo-500",
+                      link: "mailto:alsahmalfareedinfo@gmail.com"
+                    },
+                    { 
+                      icon: Phone, 
+                      label: phone_label, 
+                      value: complaintData?.info?.phoneValue || "0945437366", 
+                      color: "from-brand-accent to-amber-500", 
+                      isLtr: true,
+                      link: "tel:0945437366"
+                    },
+                    { 
+                      icon: MapPin, 
+                      label: location_label, 
+                      value: complaintData?.info?.locationValue || (isRTL ? "ليبيا - طرابلس - طريق المشتل" : "Libya - Tripoli"), 
+                      color: "from-teal-400 to-cyan-500" 
+                    },
+                    { 
+                      icon: Clock, 
+                      label: hours_label, 
+                      value: complaintData?.info?.workingHoursValue || (isRTL ? "الأحد إلى الخميس - 8:00 صباحاً حتى 2:00 ظهراً" : "Sun to Thu — 8:00 AM to 2:00 PM"), 
+                      color: "from-amber-400 to-orange-500" 
+                    }
+                  ].map((item, idx) => {
+                    const WrapperComponent = item.link ? 'a' : 'div';
+                    const wrapperProps = item.link ? { href: item.link } : {};
+                    
+                    return (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.08 }}
+                        whileHover={{ scale: 1.02, x: isRTL ? -6 : 6 }}
+                        className={cn(
+                          "group relative flex items-center gap-5 p-5 rounded-2xl border bg-white/70 backdrop-blur-sm shadow-xl shadow-slate-900/5 border-slate-200/60 hover:border-brand-signature/30 transition-all duration-300",
+                          item.link && "cursor-pointer"
+                        )}
+                        {...(item.link ? {} : {})}
+                      >
+                        <WrapperComponent 
+                          {...wrapperProps}
+                          className="absolute inset-0 rounded-2xl"
+                          aria-label={item.link ? item.label : undefined}
+                        />
+                        <div className={cn(
+                          "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:rotate-6 relative z-10",
+                          "bg-gradient-to-br text-white shadow-lg",
+                          item.color
+                        )}>
+                          <item.icon className="w-6 h-6" />
+                        </div>
+                        <div className="flex-1 min-w-0 relative z-10 pointer-events-none">
+                          <span className="block text-xs font-bold uppercase tracking-wider text-slate-500/70 mb-1">{item.label}</span>
+                          <p className={cn(
+                            "text-base md:text-lg font-bold text-slate-800",
+                            item.isLtr && "tracking-wide"
+                          )}>{item.value}</p>
+                        </div>
+                        <div className={cn(
+                          "absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none rounded-2xl",
+                          item.color
+                        )} />
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -435,41 +472,55 @@ export default function ComplaintsContent({
                       </FieldWrapper>
                     </div>
 
-                    {/* Row: Phone + Relation */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <FieldWrapper
-                        label={isRTL ? "رقم الهاتف *" : "Phone Number *"}
-                        error={errors.phone}
-                        isRTL={isRTL}
-                      >
-                        <input
-                          type="tel"
-                          dir="ltr"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className={inputClasses(!!errors.phone)}
-                          placeholder="+218 XX XXX XXXX"
-                        />
-                      </FieldWrapper>
+                    {/* Row: Phone */}
+                    <FieldWrapper
+                      label={isRTL ? "رقم الهاتف *" : "Phone Number *"}
+                      error={errors.phone}
+                      isRTL={isRTL}
+                    >
+                      <input
+                        type="tel"
+                        dir="ltr"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className={inputClasses(!!errors.phone)}
+                        placeholder="+218 XX XXX XXXX"
+                      />
+                    </FieldWrapper>
 
-                      <FieldWrapper
-                        label={isRTL ? "صلة القرابة بالمدرسة *" : "Your Relation *"}
-                        error={errors.relation}
-                        isRTL={isRTL}
-                      >
-                        <select
-                          dir={isRTL ? 'rtl' : 'ltr'}
-                          value={formData.relation}
-                          onChange={(e) => setFormData({ ...formData, relation: e.target.value as RelationType })}
-                          className={inputClasses(!!errors.relation) + " appearance-none cursor-pointer"}
-                        >
-                          <option value="">{isRTL ? "— اختر الصلة —" : "— Select relation —"}</option>
-                          {Object.entries(relationLabels[lang]).map(([k, v]) => (
-                            <option key={k} value={k}>{v}</option>
-                          ))}
-                        </select>
-                      </FieldWrapper>
-                    </div>
+                    {/* Relation - Full Width with Buttons */}
+                    <FieldWrapper
+                      label={isRTL ? "صلة القرابة بالمدرسة *" : "Your Relation *"}
+                      error={errors.relation}
+                      isRTL={isRTL}
+                    >
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
+                        {Object.entries(relationLabels[lang]).map(([k, v]) => {
+                          const selected = formData.relation === k;
+                          return (
+                            <button
+                              key={k}
+                              type="button"
+                              onClick={() => setFormData({ ...formData, relation: k as RelationType })}
+                              className={cn(
+                                "relative rounded-xl px-4 py-3 text-sm font-bold transition-all duration-300 border-2 text-center",
+                                selected
+                                  ? "border-brand-signature bg-brand-signature text-white shadow-lg scale-[1.02]"
+                                  : "border-slate-200 bg-white/70 text-slate-600 hover:border-brand-signature/40 hover:bg-brand-signature/5 hover:text-brand-signature"
+                              )}
+                            >
+                              {v}
+                              {selected && (
+                                <CheckCircle2 
+                                  className="absolute top-2 w-4 h-4" 
+                                  style={{ [isRTL ? 'left' : 'right']: '0.5rem' }} 
+                                />
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </FieldWrapper>
 
                     {/* Row: Student Name + Class */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -509,7 +560,7 @@ export default function ComplaintsContent({
                       error={errors.complaintType}
                       isRTL={isRTL}
                     >
-                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 pt-1">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 pt-1">
                         {(Object.entries(complaintTypeLabels[lang]) as [ComplaintType, typeof complaintTypeLabels["ar"]["academic"]][]).map(([key, val]) => {
                           const CompIcon = val.icon;
                           const selected = formData.complaintType === key;
@@ -519,7 +570,7 @@ export default function ComplaintsContent({
                               type="button"
                               onClick={() => setFormData({ ...formData, complaintType: key })}
                               className={cn(
-                                "relative group rounded-xl px-3 py-3 text-xs md:text-sm font-bold transition-all duration-300 flex flex-col items-center gap-2 border-2",
+                                "relative group rounded-xl px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm font-bold transition-all duration-300 flex flex-col items-center gap-1 sm:gap-2 border-2 min-h-[80px] sm:min-h-[90px]",
                                 selected
                                   ? [
                                       "border-transparent text-white shadow-lg scale-[1.02]",
@@ -528,9 +579,9 @@ export default function ComplaintsContent({
                                   : "border-slate-200 bg-white/70 text-slate-600 hover:border-brand-signature/40 hover:bg-brand-signature/5 hover:text-brand-signature"
                               )}
                             >
-                              <CompIcon className={cn("w-5 h-5 transition-transform duration-300", selected && "scale-110 -rotate-3")} />
-                              <span className="leading-tight text-center">{val.label}</span>
-                              {selected && <CheckCircle2 className="absolute top-1.5 w-4 h-4" style={{ [isRTL ? 'left' : 'right']: '0.6rem' }} />}
+                              <CompIcon className={cn("w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300", selected && "scale-110 -rotate-3")} />
+                              <span className="leading-tight text-center text-[10px] sm:text-xs">{val.label}</span>
+                              {selected && <CheckCircle2 className="absolute top-1 sm:top-1.5 w-3 h-3 sm:w-4 sm:h-4" style={{ [isRTL ? 'left' : 'right']: '0.4rem' }} />}
                             </button>
                           );
                         })}

@@ -11,7 +11,7 @@ export const staticData = {
     logo: "/logo.png",
     contactInfo: {
       email: "alsahmalfareedinfo@gmail.com",
-      phone: "091 3372084",
+      phone: "094 5437366",
       address: {
         ar: "ليبيا - طرابلس - طريق المشتل",
         en: "Libya - Tripoli - Al-Mishtal Road"
@@ -37,7 +37,7 @@ export const staticData = {
         emailLabel: "البريد الإلكتروني للشكاوى",
         emailValue: "alsahmalfareedinfo@gmail.com",
         phoneLabel: "الهاتف المباشر",
-        phoneValue: "091 3372084",
+        phoneValue: "094 5437366",
         locationLabel: "مقر إدارة المدرسة",
         locationValue: "ليبيا - طرابلس - طريق المشتل",
         workingHoursLabel: "ساعات الدوام الرسمية",
@@ -62,7 +62,7 @@ export const staticData = {
         emailLabel: "Complaints Email",
         emailValue: "alsahmalfareedinfo@gmail.com",
         phoneLabel: "Direct Phone",
-        phoneValue: "091 3372084",
+        phoneValue: "094 5437366",
         locationLabel: "School Administration",
         locationValue: "Libya - Tripoli - Al-Mishtal Road",
         workingHoursLabel: "Working Hours",
@@ -84,7 +84,7 @@ export const staticData = {
       title: "تواصل معنا",
       subtitle: "نحن هنا للإجابة على استفساراتكم",
       email: "alsahmalfareedinfo@gmail.com",
-      phone: "091 3372084",
+      phone: "094 5437366",
       address: "ليبيا - طرابلس - طريق المشتل",
       workingHours: "الأحد إلى الخميس - 8:00 صباحاً حتى 2:00 ظهراً"
     },
@@ -92,7 +92,7 @@ export const staticData = {
       title: "Contact Us",
       subtitle: "We're here to answer your questions",
       email: "alsahmalfareedinfo@gmail.com",
-      phone: "091 3372084",
+      phone: "094 5437366",
       address: "Libya - Tripoli - Al-Mishtal Road",
       workingHours: "Sun to Thu — 8:00 AM to 2:00 PM"
     }

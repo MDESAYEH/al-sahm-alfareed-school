@@ -13,10 +13,10 @@ export default function AdmissionCTA() {
 
   const actions = {
     ar: [
-      { icon: Phone, label: 'اتصل بنا', href: '/contact' },
+      { icon: Phone, label: 'اتصل بنا', href: 'tel:0945437366' },
     ],
     en: [
-      { icon: Phone, label: 'Contact Us', href: '/contact' },
+      { icon: Phone, label: 'Contact Us', href: 'tel:0945437366' },
     ],
   };
 
@@ -106,9 +106,9 @@ export default function AdmissionCTA() {
             className="text-white/80 text-sm"
           >
             {isRTL ? (
-              <>للاستفسارات: <a href="tel:0913372084" className="underline hover:text-white">📞 0913372084</a> | <a href="mailto:alsahmalfareedinfo@gmail.com" className="underline hover:text-white">✉️ alsahmalfareedinfo@gmail.com</a></>
+              <>للاستفسارات: <a href="tel:0945437366" className="underline hover:text-white">📞 0945437366</a> | <a href="mailto:alsahmalfareedinfo@gmail.com" className="underline hover:text-white">✉️ alsahmalfareedinfo@gmail.com</a></>
             ) : (
-              <>For inquiries: <a href="tel:0913372084" className="underline hover:text-white">📞 0913372084</a> | <a href="mailto:alsahmalfareedinfo@gmail.com" className="underline hover:text-white">✉️ alsahmalfareedinfo@gmail.com</a></>
+              <>For inquiries: <a href="tel:0945437366" className="underline hover:text-white">📞 0945437366</a> | <a href="mailto:alsahmalfareedinfo@gmail.com" className="underline hover:text-white">✉️ alsahmalfareedinfo@gmail.com</a></>
             )}
           </motion.p>
         </div>

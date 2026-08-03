@@ -196,8 +196,8 @@ export default function FAQSection() {
                 : "Don't hesitate to contact us, our team is ready to help"}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
-              <a href="tel:0913372084" className="flex items-center gap-2 text-brand-signature hover:text-brand-signature/80 font-semibold">
-                📞 0913372084
+              <a href="tel:0945437366" className="flex items-center gap-2 text-brand-signature hover:text-brand-signature/80 font-semibold">
+                📞 0945437366
               </a>
               <span className="text-neutral-300">|</span>
               <a href="mailto:alsahmalfareedinfo@gmail.com" className="flex items-center gap-2 text-brand-signature hover:text-brand-signature/80 font-semibold">

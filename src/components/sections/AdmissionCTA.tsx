@@ -79,20 +79,22 @@ export default function AdmissionCTA() {
               const Icon = action.icon;
               return (
                 <div key={i} role="listitem">
-                  <PremiumButton
-                    variant="outline"
-                    size="lg"
-                    icon={i === 1 ? <ArrowLeft className={cn('w-5 h-5', isRTL && 'rotate-180')} /> : <Icon className="w-5 h-5" />}
-                    iconPosition={i === 1 ? (isRTL ? 'left' : 'right') : 'left'}
-                    className={cn(
-                      'border-2 border-white text-white backdrop-blur-md',
-                      i === 1 
-                        ? 'bg-white text-brand-accent hover:bg-white/90 hover:text-brand-accent shadow-2xl' 
-                        : 'bg-white/10 hover:bg-white/20 hover:border-white'
-                    )}
-                  >
-                    {action.label}
-                  </PremiumButton>
+                  <a href={action.href}>
+                    <PremiumButton
+                      variant="outline"
+                      size="lg"
+                      icon={i === 1 ? <ArrowLeft className={cn('w-5 h-5', isRTL && 'rotate-180')} /> : <Icon className="w-5 h-5" />}
+                      iconPosition={i === 1 ? (isRTL ? 'left' : 'right') : 'left'}
+                      className={cn(
+                        'border-2 border-white text-white backdrop-blur-md',
+                        i === 1 
+                          ? 'bg-white text-brand-accent hover:bg-white/90 hover:text-brand-accent shadow-2xl' 
+                          : 'bg-white/10 hover:bg-white/20 hover:border-white'
+                      )}
+                    >
+                      {action.label}
+                    </PremiumButton>
+                  </a>
                 </div>
               );
             })}

@@ -119,8 +119,8 @@ export default function SchoolFooter() {
             {/* رابط صفحة الشكاوى */}
             <div className="pt-2">
               <a
-                href={`/${locale}/complaints`}
-                className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-gradient-to-r from-brand-signature to-brand-accent text-white font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
+                href={`/complaints`}
+                className="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl text-gray-700 font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 <span>📝</span>
                 <span>{isRTL ? 'الشكاوى والملاحظات' : 'Complaints & Feedback'}</span>
